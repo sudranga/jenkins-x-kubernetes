@@ -25,14 +25,13 @@ pipelines:
     build:
       replace: true
       steps:
-      - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true" '
+      - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true"'
       - sh: skaffold version
         name: skaffold-version
       - sh: export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml
         name: container-build
       - sh: jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)
         name: post-build
-      - groovy: "script { real_exit_code = readFile('exit_code_file').trim(); assert real_exit_code == 0 }"
     promote:
       steps:
       - dir: charts/REPLACE_ME_APP_NAME
