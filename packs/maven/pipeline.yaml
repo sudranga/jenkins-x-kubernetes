@@ -29,7 +29,7 @@ pipelines:
         name: set-version
       - sh: mvn install
         name: mvn-install
-      - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true"'
+      - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true" '
       - sh: skaffold version
         name: skaffold-version
       - sh: export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml
