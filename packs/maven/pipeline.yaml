@@ -25,10 +25,6 @@ pipelines:
     build:
       replace: true
       steps:
-      - sh: mvn versions:set -DnewVersion=$PREVIEW_VERSION
-        name: set-version
-      - sh: mvn install
-        name: mvn-install
       - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true" '
       - sh: skaffold version
         name: skaffold-version
