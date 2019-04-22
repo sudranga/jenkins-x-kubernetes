@@ -30,7 +30,6 @@ pipelines:
       - sh: mvn install
         name: mvn-install
       - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true"'
-      - groovy: "real_exit_code = readFile('exit_code_file').trim()"
       - sh: skaffold version
         name: skaffold-version
       - sh: export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml
