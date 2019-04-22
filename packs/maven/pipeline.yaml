@@ -32,7 +32,9 @@ pipelines:
       - sh: jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)
         name: post-build
       - groovy: "hello"
-    groovy: "HI"
+    post:
+      steps:
+      - groovy: "HI"
     postBuild:
       steps:
       - groovy: always
