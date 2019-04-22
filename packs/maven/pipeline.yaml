@@ -36,7 +36,7 @@ pipelines:
       - groovy: always
         steps:
         - groovy: "archive: target/**/*"
-          groovy: "junit: target/surefire-reports/*.xml"     
+        - groovy: "junit: target/surefire-reports/*.xml"     
     promote:
       steps:
       - dir: charts/REPLACE_ME_APP_NAME
