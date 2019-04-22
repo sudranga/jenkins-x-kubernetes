@@ -23,7 +23,6 @@ pipelines:
           name: jx-preview
   release:
     build:
-      replace: true
       steps:
       - groovy: 'sh "(mvn clean deploy; echo \$? > exit_code_file) || true"'
       - sh: skaffold version
